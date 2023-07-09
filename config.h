@@ -107,6 +107,8 @@ static const Key keys[] = {
 	{ MODKEY_SUPER,                 XK_F12,    spawn,          SHCMD("amixer sset Master 5%+") },
 	{ MODKEY_SUPER,                 XK_F11,    spawn,          SHCMD("amixer sset Master 5%-") },
 	{ MODKEY_SUPER,                 XK_F10,    spawn,          SHCMD("amixer sset Master toggle") },
+	{ MODKEY_SUPER,                 XK_F6,     spawn,          SHCMD("xbacklight -inc 10") },
+	{ MODKEY_SUPER,                 XK_F5,     spawn,          SHCMD("xbacklight -dec 10") },
 };
 
 /* button definitions */
