@@ -3,7 +3,7 @@
 
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int gappx     = 6;        /* gaps between windows */
+static const unsigned int gappx     = 4;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayonleft = 0;    /* 0: systray in the right corner, >0: systray on left of status text */
@@ -40,7 +40,7 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.5; /* 平铺模式主窗口占比 [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
@@ -48,10 +48,9 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
+	{ "###",      gaplessgrid },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-	/* symbol     arrange function */
-	{ "###",      gaplessgrid },
 };
 
 /* key definitions */
@@ -87,11 +86,11 @@ static const Key keys[] = {
 	{ MODKEY_SUPER,                 XK_Return, zoom,           {0} },                     /* 当前窗口置为主窗口 */
 	{ MODKEY_SUPER,                 XK_Tab,    view,           {0} },                     /* 当前Tag与上一个Tag之间切换 */
 	{ MODKEY_SUPER,                 XK_q,      killclient,     {0} },                     /* 关闭当前窗口 */
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_g,      setlayout,      {.v = &layouts[3]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
+	{ MODKEY_SUPER,                 XK_t,      setlayout,      {.v = &layouts[0]} },      /* 平铺模式*/
+	{ MODKEY_SUPER,                 XK_g,      setlayout,      {.v = &layouts[1]} },      /* 网格模式*/
+	{ MODKEY_SUPER,                 XK_f,      setlayout,      {.v = &layouts[2]} },      /* 浮动模式*/
+	{ MODKEY_SUPER,                 XK_m,      setlayout,      {.v = &layouts[3]} },      /* 全屏模式*/
+	{ MODKEY_SUPER,                 XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
