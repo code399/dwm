@@ -35,7 +35,7 @@ static const unsigned int alphas[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = {" ", " ", " ", " ", " ", " ", " ", "󰬛 ", " " };
+static const char *tags[] = {" ", " ", " ", " ", " ", " ", " ", "󰬛 ", " " };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -117,11 +117,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY_SUPER,                 XK_Escape, quit,           {0} },                    /* 退出dwm */
-	{ MODKEY_SUPER,                 XK_F12,    spawn,          SHCMD("amixer sset Master 5%+") },
-	{ MODKEY_SUPER,                 XK_F11,    spawn,          SHCMD("amixer sset Master 5%-") },
-	{ 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer sset Master 5%+") },
-	{ 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer sset Master 5%-") },
-	{ 0,            XF86XK_AudioMute,          spawn,          SHCMD("amixer sset Master togle") },
+	{ 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer sset Master 5%+ unmute") },
+	{ 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer sset Master 5%- unmute") },
+	{ 0,            XF86XK_AudioMute,          spawn,          SHCMD("amixer sset Master toggle") },
 	{ 0,            XF86XK_MonBrightnessUp,    spawn,          SHCMD("xbacklight -inc 10") },
 	{ 0,            XF86XK_MonBrightnessDown,  spawn,          SHCMD("xbacklight -dec 10") },
 	{ 0,            XF86XK_TouchpadToggle,     spawn,          {.v= touchpadctl } },
