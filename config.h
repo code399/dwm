@@ -1,3 +1,4 @@
+#include "X11/XF86keysym.h"
 #include "gaplessgrid.c"
 /* See LICENSE file for copyright and license details. */
 
@@ -78,6 +79,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *alacrittycmd[]  = { "alacritty", NULL };
 static const char *roficmd[]  = { "rofi", "-show", "drun", NULL };
+static const char *touchpadctl[]  = { "/home/david/Downloads/dwm/tpctl.py", NULL };
 
 static const Key keys[] = {
 	/* modifier         		key        function        argument */
@@ -117,9 +119,12 @@ static const Key keys[] = {
 	{ MODKEY_SUPER,                 XK_Escape, quit,           {0} },                    /* 退出dwm */
 	{ MODKEY_SUPER,                 XK_F12,    spawn,          SHCMD("amixer sset Master 5%+") },
 	{ MODKEY_SUPER,                 XK_F11,    spawn,          SHCMD("amixer sset Master 5%-") },
-	{ MODKEY_SUPER,                 XK_F10,    spawn,          SHCMD("amixer sset Master toggle") },
-	{ MODKEY_SUPER,                 XK_F6,     spawn,          SHCMD("xbacklight -inc 10") },
-	{ MODKEY_SUPER,                 XK_F5,     spawn,          SHCMD("xbacklight -dec 10") },
+	{ 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer sset Master 5%+") },
+	{ 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer sset Master 5%-") },
+	{ 0,            XF86XK_AudioMute,          spawn,          SHCMD("amixer sset Master togle") },
+	{ 0,            XF86XK_MonBrightnessUp,    spawn,          SHCMD("xbacklight -inc 10") },
+	{ 0,            XF86XK_MonBrightnessDown,  spawn,          SHCMD("xbacklight -dec 10") },
+	{ 0,            XF86XK_TouchpadToggle,     spawn,          {.v= touchpadctl } },
 };
 
 /* button definitions */
